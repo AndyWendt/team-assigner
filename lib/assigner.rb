@@ -5,16 +5,24 @@ class Assigner
   end
 
   def teams
-    [
-        Team.new('guide a', ['person a', 'person b']),
-        Team.new('guide b', ['person c'])
-    ]
+    team1 = Team.new('guide a')
+    team1.add_participant('person a')
+    team1.add_participant('person b')
+
+    team2 = Team.new('guide b')
+    team2.add_participant('person c')
+
+    [team1, team2]
   end
 
   class Team
-    def initialize(guide, participants)
+    def initialize(guide)
       @guide = guide
-      @participants = participants
+      @participants = []
+    end
+
+    def add_participant(participant)
+      @participants.push(participant)
     end
 
     attr_reader :guide, :participants
