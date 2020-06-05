@@ -7,11 +7,11 @@ class Assigner
   end
 
   def to_file(out_file)
-    lines = [
-        HEADER_LINE,
-        ['Guide One', '1', 'Person One'],
-        ['Guide Two', '1', 'Person Two']
-    ]
+    lines = [HEADER_LINE].tap do |lines|
+      Teams.new(@guides_file.to_a, @participants_file.to_a)
+          .all.each { |team| lines << [team.guide, team.count, team.participants.join(',')]}
+    end
+
     storage.write_csv(out_file, lines)
   end
 
