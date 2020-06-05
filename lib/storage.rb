@@ -1,8 +1,8 @@
 require 'csv'
 
 class Storage
-  def initialize(directory = "#{File.expand_path(File.dirname(__FILE__))}/../storage")
-    @directory = directory
+  def initialize(directory = "storage")
+    @directory = "#{File.expand_path(File.dirname(__FILE__))}/../#{directory}"
   end
 
   def exists?(file)

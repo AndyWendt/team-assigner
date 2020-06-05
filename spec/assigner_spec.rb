@@ -16,9 +16,10 @@ describe Assigner do
     participants_file = 'participants.txt'
     guides_file = 'guides.txt'
     out_file = 'out.csv'
+    storage = Storage.new
 
-    described_class.new(guides_file, participants_file).to_file(out_file)
-    csv = CSV.read(Storage.new.path(out_file))
-    expect(Storage.new.exists?(out_file)).to be_truthy
+    described_class.new(guides_file, participants_file, storage).to_file(out_file)
+    csv = CSV.read(storage.path(out_file))
+    expect(storage.exists?(out_file)).to be_truthy
   end
 end
