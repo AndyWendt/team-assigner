@@ -1,18 +1,21 @@
 class Assigner
   def initialize(guides, participants)
-    @guides = guides
+    @teams = guides.map{ |guide| Team.new(guide) }
     @participants = participants
   end
 
   def teams
-    team1 = Team.new('guide a')
-    team1.add_participant('person a')
-    team1.add_participant('person b')
+    participants_copy = @participants.clone.reverse
 
-    team2 = Team.new('guide b')
-    team2.add_participant('person c')
+    until participants_copy.empty?
+      @teams.each do |team|
+        participant = participants_copy.pop
+        team.add_participant(participant) if participant
+        team
+      end
+    end
 
-    [team1, team2]
+    @teams
   end
 
   class Team
