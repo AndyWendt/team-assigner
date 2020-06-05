@@ -1,12 +1,12 @@
 require 'rspec'
-require 'assigner'
+require 'teams'
 
-describe Assigner do
+describe Teams do
   it 'sorts guides and participants into teams equally' do
     participants = ['person a', 'person b', 'person c']
     guides = ['guide a', 'guide b']
 
-    result = Assigner.new(guides, participants).teams
+    result = Teams.new(guides, participants).all
 
     team1 = result[0]
     expect(team1.guide).to eq(guides[0])

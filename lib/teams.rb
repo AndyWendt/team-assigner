@@ -1,10 +1,10 @@
-class Assigner
+class Teams
   def initialize(guides, participants)
     @teams = guides.map{ |guide| Team.new(guide) }
     @participants = participants
   end
 
-  def teams
+  def all
     participants_copy = @participants.clone.reverse
 
     until participants_copy.empty?
