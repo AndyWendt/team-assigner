@@ -27,6 +27,10 @@ class Storage
     end
   end
 
+  def read(file)
+    CSV.read(path(file))
+  end
+
   private
 
   attr_reader :directory
