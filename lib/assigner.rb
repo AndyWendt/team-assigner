@@ -1,10 +1,16 @@
+require 'teams'
+require 'name_file'
+require 'randomizer'
+require 'storage'
+
 class Assigner
   HEADER_LINE = ['Guide', 'Count', 'Participants']
-  def initialize(guides_file, participants_file, storage, randomizer)
-    @guides_file = guides_file
-    @participants_file = participants_file
+
+  def initialize(storage = Storage.new, randomizer = Randomizer.new, participants_file = NameFile.new('participants.txt', storage), guides_file = NameFile.new('guides.txt', storage))
     @storage = storage
     @randomizer = randomizer
+    @participants_file = participants_file
+    @guides_file = guides_file
   end
 
   def to_file(out_file)

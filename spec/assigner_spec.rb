@@ -16,12 +16,10 @@ describe Assigner do
 
   it 'creates a list of teams from a file' do
     storage = Storage.new('spec/storage')
-    participants_file = NameFile.new('participants.txt', storage)
-    guides_file = NameFile.new('guides.txt', storage)
     out_file = 'out.csv'
     randomizer = RandomizerFake.new
 
-    described_class.new(guides_file, participants_file, storage, randomizer).to_file(out_file)
+    described_class.new(storage, randomizer).to_file(out_file)
     expect(storage.exists?(out_file)).to be_truthy
     result = storage.read(out_file)
     expect(result[0]).to eq(Assigner::HEADER_LINE)
