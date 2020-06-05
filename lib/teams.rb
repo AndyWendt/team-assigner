@@ -28,6 +28,10 @@ class Teams
       @participants.push(participant)
     end
 
+    def count
+      @participants.count
+    end
+
     attr_reader :guide, :participants
   end
 end
