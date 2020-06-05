@@ -6,7 +6,7 @@ describe Teams do
     participants = ['person a', 'person b', 'person c']
     guides = ['guide a', 'guide b']
 
-    result = Teams.new(guides, participants).all
+    result = described_class.new(guides, participants).all
 
     team1 = result[0]
     expect(team1.guide).to eq(guides[0])
