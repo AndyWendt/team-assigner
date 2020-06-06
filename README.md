@@ -1,5 +1,7 @@
 # Team Assigner
 
+[![Build Status](https://travis-ci.org/AndyWendt/team-assigner.svg?branch=master)](https://travis-ci.org/AndyWendt/team-assigner)
+
 Add a newline delimited file representing guides and participants to the storage directory: 
 
 * `guides.txt`
