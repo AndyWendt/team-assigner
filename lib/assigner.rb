@@ -11,7 +11,7 @@ class Assigner
   def to_file(out_file)
     lines = [HEADER_LINE].tap do |lines|
       Teams.new(randomizer.run(guides_file), randomizer.run(participants_file))
-          .all.each { |team| lines << [team.guide, team.count, team.participants.join(',')]}
+          .all.each { |team| lines << [team.guide, team.count, *team.participants]}
     end
 
     storage.write_csv(out_file, lines)

@@ -23,7 +23,7 @@ describe Assigner do
     expect(storage.exists?(out_file)).to be_truthy
     result = storage.read(out_file)
     expect(result[0]).to eq(Assigner::HEADER_LINE)
-    expect(result[1]).to eq(['Guide One', '2', 'Person One,Person Three'])
+    expect(result[1]).to eq(['Guide One', '2', 'Person One', 'Person Three'])
     expect(result[2]).to eq(['Guide Two', '1', 'Person Two'])
   end
 end
