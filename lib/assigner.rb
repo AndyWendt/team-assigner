@@ -1,8 +1,3 @@
-require 'teams'
-require 'name_file'
-require 'randomizer'
-require 'storage'
-
 class Assigner
   HEADER_LINE = ['Guide', 'Count', 'Participants']
 
