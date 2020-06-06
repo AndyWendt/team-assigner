@@ -1,17 +1,14 @@
 class Assigner
   HEADER_LINE = ['Guide', 'Count', 'Participants']
 
-  def initialize(storage = Storage.new, randomizer = Randomizer.new, participants_file = NameFile.new('participants.txt', storage), guides_file = NameFile.new('guides.txt', storage))
+  def initialize(teams, storage = Storage.new)
+    @teams = teams
     @storage = storage
-    @randomizer = randomizer
-    @participants_file = participants_file
-    @guides_file = guides_file
   end
 
   def to_file(out_file)
     lines = [HEADER_LINE].tap do |lines|
-      Teams.new(randomizer.run(guides_file), randomizer.run(participants_file))
-          .all.each { |team| lines << [team.guide, team.count, *team.participants]}
+      teams.all.each { |team| lines << [team.guide, team.count, *team.participants] }
     end
 
     storage.write_csv(out_file, lines)
@@ -19,5 +16,5 @@ class Assigner
 
   private
 
-  attr_reader :storage, :randomizer, :guides_file, :participants_file
+  attr_reader :storage, :teams
 end

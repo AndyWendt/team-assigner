@@ -1,7 +1,7 @@
 class Teams
   def initialize(guides, participants)
-    @teams = guides.map{ |guide| Team.new(guide) }
-    @participants = participants
+    @teams = guides.randomized.map{ |guide| Team.new(guide) }
+    @participants = participants.randomized
   end
 
   def all

@@ -19,7 +19,11 @@ describe Assigner do
     out_file = 'out.csv'
     randomizer = RandomizerFake.new
 
-    described_class.new(storage, randomizer).to_file(out_file)
+    participants_file = NameFile.new('participants.txt', randomizer, storage)
+    guides_file = NameFile.new('guides.txt', randomizer, storage)
+    teams = Teams.new(guides_file, participants_file)
+
+    described_class.new(teams, storage).to_file(out_file)
     expect(storage.exists?(out_file)).to be_truthy
     result = storage.read(out_file)
     expect(result[0]).to eq(Assigner::HEADER_LINE)

@@ -1,12 +1,16 @@
 require 'rspec'
 require 'teams'
+require 'name_file_fake'
 
 describe Teams do
   it 'sorts guides and participants into teams equally' do
-    participants = ['person a', 'person b', 'person c']
-    guides = ['guide a', 'guide b']
+    participants = NameFileFake.new(['person a', 'person b', 'person c'])
+    guides = NameFileFake.new(['guide a', 'guide b'])
 
     result = described_class.new(guides, participants).all
+
+    participants = participants.randomized
+    guides = guides.randomized
 
     team1 = result[0]
     expect(team1.guide).to eq(guides[0])
